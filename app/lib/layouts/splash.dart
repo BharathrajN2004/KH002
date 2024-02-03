@@ -41,7 +41,7 @@ class Splash extends ConsumerWidget {
                     right: sizeData.width * 0.02,
                   ),
                   child: Image.asset(
-                    "assets/images/splash.png",
+                    "assets/images/splash2.png",
                     width: sizeData.width,
                     fit: BoxFit.fill,
                   ),
