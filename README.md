@@ -41,76 +41,86 @@ Our proposed Fintech solution, SplitIt is an all-encompassing application that r
 
 *Tech Stack*
 
-Frontend: Developed with Flutter, providing a visually appealing and responsive user interface.
-Backend: Powered by Node.js, utilizing Cloudinary for efficient media management.
-Database: MongoDB ensures real-time updates on group expenses.
-Security: Implements SHA256 for data integrity and JWT for secure authentication.
-Payment SDKs: Integrated Razorpay and Stripe for secure and efficient payment processing.
+Frontend: 
+        ->Developed with Flutter, providing a visually appealing and responsive user interface.
+>
+Backend: 
+        ->Powered by Node.js, utilizing Cloudinary for efficient media management.
+
+Database: 
+        ->MongoDB ensures real-time updates on group expenses.
+
+Security: 
+        ->Implements SHA256 for data integrity and JWT for secure authentication.
+
+Payment SDKs: 
+        ->Integrated Razorpay and Stripe for secure and efficient payment processing.
+
 
 *Workflow*
 
 *Registration and Login*
 
 Register:
-        -Users register with their credentials, including a secure password.
+        ->Users register with their credentials, including a secure password.
 
 Login:
-        -Securely log in using registered credentials.
+        ->Securely log in using registered credentials.
 
 *Payment Integration*
 
 Payment Methods:
-        -Link UPI, bank accounts, debit cards and credit cards for transactions.
+        ->Link UPI, bank accounts, debit cards and credit cards for transactions.
 
 Perform Transactions:
-        -Initiate transactions for bill payments, wallet top-ups, or other financial activities.
+        ->Initiate transactions for bill payments, wallet top-ups, or other financial activities.
 
 *Group and Split Payments*
 
 Create a Split Group:
-        -Hosts create split groups, adding participants and specifying amounts.
+        ->Hosts create split groups, adding participants and specifying amounts.
 
 Participant Interaction:
-        -Participants receive invitations, accept/reject, and contribute to the total amount.
+        ->Participants receive invitations, accept/reject, and contribute to the total amount.
 
 Host Payment:
-        -Host pays the entire amount, and participants reimburse within the set due date.
+        ->Host pays the entire amount, and participants reimburse within the set due date.
 
 *Wallet Management*
 
 Wallet Transactions:
-        -Minimum wallet balance is established during registration.
-        -Monitor wallet transactions and track the transaction history.
+        ->Minimum wallet balance is established during registration.
+        ->Monitor wallet transactions and track the transaction history.
 
 Late Payment Collateral:
-        -Ensure a minimum wallet balance as collateral for late payments.
+        ->Ensure a minimum wallet balance as collateral for late payments.
 
 *Fundraising and Community Contributions*
 
 Fundraising:
-        Fundraising communities collect monthly contributions for social causes.
+        ->Fundraising communities collect monthly contributions for social causes.
 
 Community Events:
-        Support various events, parties, and community gatherings.
+        ->Support various events, parties, and community gatherings.
 
 Lottery-based Withdrawal:
-        Organizations implement a lottery system for member withdrawals.
+        ->Organizations implement a lottery system for member withdrawals.
 
 *Financial Insights and AI Tracking*
 
 AI Insights:
-        The AI system tracks transactions and provides personalized financial insights.
+        ->The AI system tracks transactions and provides personalized financial insights.
 
 Regulate Spending:
-        Receive advice on regulating spending, budgeting, and saving.
+        ->Receive advice on regulating spending, budgeting, and saving.
 
 *Investment Guidance*
 
 Market Information:
-Access real-time data on NFTs, bitcoins, stocks, and market demand.
+        ->Access real-time data on NFTs, bitcoins, stocks, and market demand.
 
 Investment Recommendations:
-Receive insights into potential investments and navigate stock portfolios.
+        ->Receive insights into potential investments and navigate stock portfolios.
 
 *Installation*
 
@@ -123,11 +133,14 @@ git clone https://github.com/BharathrajN2004/KH002.git
 *Future Innovations*
 
 As part of our commitment to continuous improvement, we plan to introduce:
-Credit Scoring System: Enhance user trust and reliability.
-Personalized Financial Solutions: Tailor the user experience to individual preferences.
+
+        ->Credit Scoring System: Enhance user trust and reliability.
+        ->Personalized Financial Solutions: Tailor the user experience to individual preferences.
 
 *Contributions*
+
 We encourage contributions! If you have ideas for improvements or find issues, please follow our contribution guidelines.
 
 *License*
+
 This project is licensed under the MIT License.
