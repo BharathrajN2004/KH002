@@ -26,6 +26,14 @@ const splitSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    payer: {
+        type: userSchema,
+        required: true,
+    },
+    splitParticipants: {
+        type: [userSchema],
+        required: true
+    },
     amount: {
         type: Number,
         required: true,
@@ -34,6 +42,9 @@ const splitSchema = new mongoose.Schema({
         type: String,
         enum: ["equal", "manual", "percentage", "shares"],
         default: "equal"
+    },
+    lastDate: {
+        type: String
     }
 })
 
