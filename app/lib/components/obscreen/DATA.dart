@@ -1,12 +1,11 @@
 const headerText = [
-  "Unlock Advanced Battery Analytics at Your Fingertips.",
-  "Experience Cutting-Edge Battery Monitoring Technology.",
-  "Effortless battery performance optimization."
+  "Hassle free payment splitting.",
+  "Effortlessly track, analyze, and take control of your expenses.",
+  "Every contribution makes a meaningful impact and transforms dreams into reality."
 ];
 
 const imagePaths = [
-  "assets/images/Onboarding/battery.png",
-  "assets/images/Onboarding/design.png",
-  "assets/images/Onboarding/cells.png",
-
+  "assets/images/on_board/bill_split.png",
+  "assets/images/on_board/expense_track.png",
+  "assets/images/on_board/fundraise.png",
 ];
