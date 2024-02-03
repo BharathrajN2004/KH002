@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../pages/analyst.dart';
+import '../pages/group.dart';
+import '../pages/nft.dart';
+import '../pages/settings.dart';
 import '../providers/navigation_index_provider.dart';
 import '../utilities/theme/color_data.dart';
 import '../utilities/theme/size_data.dart';
 
-import 'analyst.dart';
-import 'group.dart';
-import 'nft.dart';
-import 'home.dart';
-import 'settings.dart';
+import '../pages/home.dart';
 
 class Navigation extends ConsumerStatefulWidget {
   const Navigation({super.key});
@@ -34,8 +34,8 @@ class _NavigationState extends ConsumerState<Navigation> {
     FontAwesomeIcons.house,
     FontAwesomeIcons.peopleGroup,
     FontAwesomeIcons.chartSimple,
-    FontAwesomeIcons.creditCard,
-    FontAwesomeIcons.gear,
+    FontAwesomeIcons.moneyBillTrendUp,
+    FontAwesomeIcons.handHoldingHeart,
   ];
 
   @override
