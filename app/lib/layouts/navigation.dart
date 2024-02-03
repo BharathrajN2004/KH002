@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../pages/analyst.dart';
+import '../pages/expense_tracker.dart';
+import '../pages/fundraiser.dart';
 import '../pages/group.dart';
 import '../pages/nft.dart';
 import '../pages/settings.dart';
@@ -25,9 +26,9 @@ class _NavigationState extends ConsumerState<Navigation> {
   List<Widget> widgetStack = [
     Home(),
     Group(),
-    Analyst(),
+    ExpenseTracker(),
     NFTPage(),
-    Settings(),
+    FundRaiser(),
   ];
 
   List<IconData> navBarChildren = [

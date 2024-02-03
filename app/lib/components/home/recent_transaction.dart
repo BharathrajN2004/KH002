@@ -1,3 +1,4 @@
+import 'package:app/pages/transaction_history.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -133,18 +134,27 @@ class RecentTransaction extends ConsumerWidget {
                 Spacer(),
                 CustomText(text: "See All Transactions"),
                 Spacer(),
-                Container(
-                  margin: EdgeInsets.only(right: width * 0.02),
-                  padding: EdgeInsets.symmetric(
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Transactions()),
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: width * 0.02),
+                    padding: EdgeInsets.symmetric(
                       vertical: aspectRation * 12,
-                      horizontal: aspectRation * 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: colorData.secondaryColor(1),
-                  ),
-                  child: FaIcon(
-                    FontAwesomeIcons.arrowRight,
-                    size: aspectRation * 40,
+                      horizontal: aspectRation * 20,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: colorData.secondaryColor(1),
+                    ),
+                    child: FaIcon(
+                      FontAwesomeIcons.arrowRight,
+                      size: aspectRation * 40,
+                    ),
                   ),
                 ),
               ]),
