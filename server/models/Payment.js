@@ -9,17 +9,20 @@ const paymentSchema = new mongoose.Schema({
     bankDetails: {
       type: [bankSchema]
     },
-    upiId: {
-        type: String,
-        unique: true,
-        match: /^[A-Za-z]{4}\d{6}[A-Za-z]{2}$/,
+    upiDetails: {
+        type: [upiSchema]
     },
-    cardSelection: {
-        type: String,
-        required: true,
-        enum : ["Debit Card", "Credit Card"],
+    cardDetails: {
+        type: [cardSchema]
     },
+})
+
+const cardSchema  = new mongoose.Schema({
     cardType: {
+        type: String,
+        enum: ["Credit Card", "Debit Card"],
+    },
+    cardNetwork: {
         type: String,
         required: true,
         enum : ["RuPay", "Visa", "MasterCard"],
@@ -31,6 +34,7 @@ const paymentSchema = new mongoose.Schema({
     cvv: {
         type: Number,
         required: true,
+        length: 3
     },
     cardExpiry: {
         type: String,
@@ -38,22 +42,30 @@ const paymentSchema = new mongoose.Schema({
     },
     cardHolderName: {
         type: String,
-        required: true
+        required: true,
+        minlength: 3,
+        maxlength: 40
     }
-})
-
-const cardSchema  = new mongoose.Schema({
-    cardType: {
-        type: String,
-        enum: ["Credit Card", "Debit Card"],
-
-    } 
 })
 
 const bankSchema  = new mongoose.Schema({
     bankName: {
         type: String,
-    } 
+        required: true
+    },
+    bankBalance: {
+        type: Number,
+        required: true
+    }
+})
+
+const upiSchema = new mongoose.Schema({
+    upiId: {
+        type: String,
+        unique: true,
+        match: /^[A-Za-z]{4}\d{6}[A-Za-z]{2}$/,
+        required: true
+    },
 })
 
 

@@ -2,19 +2,13 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
 {
-  firstName: {
+  name: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 50,
   },
-  lastName: {
-    type: String,
-    required: true,
-    minlength: 1,
-    maxlength: 50,
-  },
-  profileImage: {
+  profilePic: {
   type: profileImageSchema,
   },
   dob: {

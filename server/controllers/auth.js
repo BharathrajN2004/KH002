@@ -6,26 +6,24 @@ import User from "../models/User.js";
 export const signup = async (req, res) => {
   try {
     const {
-      firstName,
-      lastName,
+      name,
+      profilePic,
+      dob,
       email,
       password,
-      interests,
       location,
-      occupation,
       paymentDetail
     } = req.body;
 
     const passwordHash = await bcrypt.hash(password, 10);
 
     const newUser = new User({
-      firstName,
-      lastName,
+      name,
+      profilePic,
+      dob,
       email,
       password: passwordHash,
-      interests,
       location,
-      occupation,
       paymentDetail
     });
     const savedUser = await newUser.save();
