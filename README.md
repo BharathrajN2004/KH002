@@ -1,13 +1,9 @@
 
 *SplitIt - Personalised Payment Application*
 
-*Problem Statement:*
-
-In the rapidly evolving landscape of financial technology, there's a growing need for a comprehensive and user-friendly fintech application that seamlessly integrates various financial services. The application aims to simplify transactions, facilitate group payments, support fundraising initiatives, provide financial insights, and offer investment guidance. The goal is to empower users to manage their finances effectively, promote financial inclusion, and enhance the overall financial well-being of individuals and communities.
-
 *Overview:*
 
-Our proposed Fintech solution is an all-encompassing application that revolutionizes financial management. Combining UPI, bank accounts, debit/credit card payments, bill transactions, wallet operations, and group payments, users can seamlessly navigate a diverse financial landscape. The innovative split payment feature empowers hosts to create groups, invite participants, and efficiently manage shared expenses. Fundraising communities benefit from effortless monthly contributions, while an ingenious lottery system caters to large-scale events. A built-in AI analyzes user transactions, offering personalized insights for budget regulation. Moreover, the app provides a comprehensive view of NFTs, bitcoins, and stocks, guiding users in making informed investment decisions. This solution not only simplifies financial operations but also fosters financial inclusivity and responsible spending habits.
+Our proposed Fintech solution, SplitIt is an all-encompassing application that revolutionizes financial management. Combining UPI, bank accounts, debit/credit card payments, bill transactions, wallet operations, and group payments, users can seamlessly navigate a diverse financial landscape. The innovative split payment feature empowers hosts to create groups, invite participants, and efficiently manage shared expenses. Fundraising communities benefit from effortless monthly contributions, while an ingenious lottery system caters to large-scale events. A built-in AI analyzes user transactions, offering personalized insights for budget regulation. Moreover, the app provides a comprehensive view of NFTs, bitcoins, and stocks, guiding users in making informed investment decisions. This solution not only simplifies financial operations but also fosters financial inclusivity and responsible spending habits.
 
 *Features*
 
