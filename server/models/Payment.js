@@ -30,6 +30,7 @@ const cardSchema  = new mongoose.Schema({
     cardNumber: {
         type: Number,
         required: true,
+        length: 16
     },
     cvv: {
         type: Number,
