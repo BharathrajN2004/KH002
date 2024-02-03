@@ -5,6 +5,10 @@ const walletSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    walletType: {
+        type: String,
+        required: true
     }
 })
 

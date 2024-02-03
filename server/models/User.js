@@ -31,8 +31,11 @@ const userSchema = new mongoose.Schema(
     required: true,
   },
   paymentDetail: {
-    type: paymentSchema,
-    required: true
+    type: paymentSchema
+  },
+  transactionHistory: {
+    type: Schema.Types.ObjectId,
+    ref: 'Transactions'
   }
 }, 
 { 
