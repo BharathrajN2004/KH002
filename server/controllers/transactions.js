@@ -1,31 +1,31 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import Transaction from "../models/Transactions.js";
 
 /* REGISTER USER */
-export const signup = async (req, res) => {
+export const createTransaction = async (req, res) => {
   try {
     const {
-      name,
-      profilePic,
-      dob,
-      email,
-      password,
-      location,
-      paymentDetail
+      sender_id,
+      receiver_id,
+      amount,
+      description,
+      date,
+      order_id,
+      
     } = req.body;
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const newUser = new User({
-      name,
-      profilePic,
-      dob,
-      email,
-      password: passwordHash,
-      location,
-      paymentDetail
+    const newTransaction = new Transaction({
+      sender_id,
+      receiver_id ,
+      amount,
+      description,
+      date,
+      order_id,
     });
+
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (err) {
