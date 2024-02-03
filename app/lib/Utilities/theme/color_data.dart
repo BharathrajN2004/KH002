@@ -7,6 +7,7 @@ class CustomColorData {
   final Color Function(double) fontColor;
   final Color Function(double) primaryColor;
   final Color Function(double) backgroundColor;
+  final Color Function(double) secondaryColor;
   final Color bottomNavBarColor;
 
   CustomColorData({
@@ -14,6 +15,7 @@ class CustomColorData {
     required this.primaryColor,
     required this.backgroundColor,
     required this.bottomNavBarColor,
+    required this.secondaryColor,
   });
 
   factory CustomColorData.from(WidgetRef ref) {
@@ -29,6 +31,10 @@ class CustomColorData {
     Color primaryColor(double opacity) =>
         statePrimaryColor.withOpacity(opacity);
 
+    Color secondaryColor(double opacity) => isDark
+        ? Color(0XFF333354).withOpacity(opacity)
+        : Colors.white.withOpacity(opacity);
+
     Color backgroundColor(double opacity) =>
         isDark ? const Color(0XFF252B32) : Color(0xFFFCFBFE);
 
@@ -39,6 +45,7 @@ class CustomColorData {
       primaryColor: primaryColor,
       backgroundColor: backgroundColor,
       bottomNavBarColor: bottomNavBarColor,
+      secondaryColor: secondaryColor,
     );
   }
 }
