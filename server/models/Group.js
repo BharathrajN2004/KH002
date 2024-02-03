@@ -21,6 +21,22 @@ const groupSchema = new mongoose.Schema({
     }
 })
 
+const splitSchema = new mongoose.Schema({
+    splitName: {
+        type: String,
+        required: true,
+    },
+    amount: {
+        type: Number,
+        required: true,
+    },
+    splitType: {
+        type: String,
+        enum: ["equal", "manual", "percentage", "shares"],
+        default: "equal"
+    }
+})
+
 const Group = mongoose.model('Group', groupSchema);
 
 export default Group;
