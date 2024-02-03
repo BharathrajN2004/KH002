@@ -51,19 +51,18 @@ class _HomeState extends ConsumerState<Home> {
                   ],
                 ),
               ),
-              Spacer(),
               Stack(
                 clipBehavior: Clip.none,
                 children: [
                   Container(
                     width: sizeData.aspectRatio * 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
                     child: Center(
                       child: FaIcon(
                         FontAwesomeIcons.solidBell,
-                        size: sizeData.aspectRatio * 55,
+                        size: sizeData.aspectRatio * 50,
                       ),
                     ),
                   ),
@@ -93,16 +92,16 @@ class _HomeState extends ConsumerState<Home> {
               ),
               Container(
                 padding: EdgeInsets.all(
-                  sizeData.aspectRatio * 2,
+                  sizeData.aspectRatio * 4,
                 ),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: colorData.bottomNavBarColor,
+                  shape: BoxShape.circle,
+                  color: colorData.primaryColor(1),
                 ),
                 child: Image.asset(
                   "assets/images/avatars/avatar1.png",
-                  width: sizeData.aspectRatio * 90,
-                  height: sizeData.aspectRatio * 90,
+                  width: sizeData.aspectRatio * 80,
+                  height: sizeData.aspectRatio * 80,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -111,24 +110,7 @@ class _HomeState extends ConsumerState<Home> {
           SizedBox(
             height: sizeData.height * 0.02,
           ),
-          // CustomText(
-          //   text: "Your Cards",
-          //   size: sizeData.subHeader,
-          //   color: colorData.fontColor(.8),
-          //   weight: FontWeight.w800,
-          // ),
-          // SizedBox(
-          //   height: sizeData.height * 0.001,
-          // ),
-          // CustomText(
-          //   text: "Your have 3 active cards",
-          //   size: sizeData.small,
-          //   color: colorData.fontColor(.5),
-          // ),
-          // SizedBox(
-          //   height: sizeData.height * 0.01,
-          // ),
-          Container(
+          SizedBox(
             width: sizeData.width,
             height: sizeData.height * 0.225,
             child: ListView.builder(
@@ -153,7 +135,7 @@ class _HomeState extends ConsumerState<Home> {
                         : sizeData.width * 0.65,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                             begin: Alignment.bottomLeft,
                             end: Alignment.topRight,
                             colors: [

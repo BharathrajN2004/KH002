@@ -7,7 +7,7 @@ import '../utilities/theme/size_data.dart';
 import '../components/common/text.dart';
 
 class NFTPage extends ConsumerWidget {
-  NFTPage({super.key});
+  const NFTPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

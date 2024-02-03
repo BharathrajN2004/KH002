@@ -7,7 +7,7 @@ import '../utilities/theme/size_data.dart';
 import '../components/common/text.dart';
 
 class Profile extends ConsumerWidget {
-  Profile({super.key});
+  const Profile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
