@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../utilities/theme/color_data.dart';
 import '../../utilities/theme/size_data.dart';
@@ -41,35 +42,25 @@ class RecentTransaction extends ConsumerWidget {
     return Container(
       margin: EdgeInsets.only(top: height * 0.01),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CustomText(
-                text: 'Transaction History',
-                size: sizeData.medium,
-                color: colorData.fontColor(.6),
-                weight: FontWeight.w800,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: CustomIcon(
-                  size: sizeData.aspectRatio * 40,
-                  icon: Icons.arrow_forward_ios_rounded,
-                  color: colorData.fontColor(.8),
-                ),
-              ),
-            ],
+          CustomText(
+            text: 'Recent Transactions',
+            size: sizeData.medium,
+            color: colorData.fontColor(.6),
+            weight: FontWeight.w800,
+          ),
+          SizedBox(
+            height: height * 0.015,
           ),
           ...transactionData
               .map(
                 (e) => Container(
                   margin: EdgeInsets.only(bottom: height * 0.01),
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(aspectRation * 22),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: colorData.secondaryColor(1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
@@ -77,14 +68,14 @@ class RecentTransaction extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(12),
+                          padding: EdgeInsets.all(aspectRation * 22),
                           decoration: BoxDecoration(
-                            color: Color(0XFFF3F2F7),
+                            color: colorData.primaryColor(.05),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Icon(
                             Icons.person_rounded,
-                            size: aspectRation * 70,
+                            size: aspectRation * 60,
                           ),
                         ),
                         SizedBox(
@@ -94,19 +85,16 @@ class RecentTransaction extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              e["name"].toString(),
-                              style: TextStyle(
-                                  fontSize: sizeData.regular,
-                                  fontWeight: FontWeight.w600),
+                            CustomText(
+                              text: e["name"].toString(),
+                              size: sizeData.regular,
+                              weight: FontWeight.w800,
                             ),
-                            Text(
-                              e["date"].toString(),
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: sizeData.small,
-                                  fontWeight: FontWeight.w500),
-                            )
+                            CustomText(
+                                text: e["date"].toString(),
+                                color: colorData.fontColor(.6),
+                                size: sizeData.small,
+                                weight: FontWeight.w500),
                           ],
                         ),
                         Spacer(),
@@ -116,22 +104,52 @@ class RecentTransaction extends ConsumerWidget {
                                   Icons.remove_rounded
                               ? Colors.red
                               : Colors.green,
-                          size: aspectRation * 60,
+                          size: aspectRation * 50,
                         ),
                         SizedBox(
                           width: width * 0.02,
                         ),
-                        Text(
-                          e["amount"].toString(),
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: sizeData.header,
-                              fontWeight: FontWeight.w800),
+                        CustomText(
+                          text: e["amount"].toString(),
+                          color: colorData.fontColor(1),
+                          size: sizeData.subHeader,
+                          weight: FontWeight.w800,
                         )
                       ]),
                 ),
               )
               .toList(),
+          SizedBox(
+            height: height * 0.005,
+          ),
+          GestureDetector(
+            child: Container(
+              padding: EdgeInsets.all(aspectRation * 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: colorData.primaryColor(.05),
+              ),
+              child: Row(children: [
+                Spacer(),
+                CustomText(text: "See All Transactions"),
+                Spacer(),
+                Container(
+                  margin: EdgeInsets.only(right: width * 0.02),
+                  padding: EdgeInsets.symmetric(
+                      vertical: aspectRation * 12,
+                      horizontal: aspectRation * 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: colorData.secondaryColor(1),
+                  ),
+                  child: FaIcon(
+                    FontAwesomeIcons.arrowRight,
+                    size: aspectRation * 40,
+                  ),
+                ),
+              ]),
+            ),
+          )
         ],
       ),
     );

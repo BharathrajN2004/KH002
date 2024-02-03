@@ -30,10 +30,12 @@ class Header extends ConsumerWidget {
                 size: sizeData.subHeader,
                 color: colorData.fontColor(.5),
               ),
-              CustomText(
-                text: "Bharath!",
-                size: sizeData.header,
-                color: colorData.fontColor(.8),
+              Expanded(
+                child: CustomText(
+                  text: "Sharjun A!",
+                  size: sizeData.header,
+                  color: colorData.fontColor(.8),
+                ),
               ),
             ],
           ),

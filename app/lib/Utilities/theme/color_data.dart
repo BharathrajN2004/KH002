@@ -36,7 +36,7 @@ class CustomColorData {
         : Colors.white.withOpacity(opacity);
 
     Color backgroundColor(double opacity) =>
-        isDark ? const Color(0XFF252B32) : Color(0xFFFCFBFE);
+        isDark ? const Color(0XFF252B32) : Color.fromARGB(255, 248, 245, 253);
 
     Color bottomNavBarColor = isDark ? const Color(0xFF2F3842) : Colors.white;
 

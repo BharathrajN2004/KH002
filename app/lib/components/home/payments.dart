@@ -26,11 +26,11 @@ class Payments extends ConsumerWidget {
         PaymentOption(
             text: "QR Scan", icon: Icons.qr_code_rounded, todo: () {}),
         PaymentOption(
-            text: "bill payment",
+            text: "Bill payment",
             icon: Icons.receipt_long_rounded,
             todo: () {}),
-        PaymentOption(text: "contacts", icon: Icons.contacts, todo: () {}),
-        PaymentOption(text: "bank", icon: Icons.account_balance, todo: () {}),
+        PaymentOption(text: "Contacts", icon: Icons.contacts, todo: () {}),
+        PaymentOption(text: "Bank Transfer", icon: Icons.account_balance, todo: () {}),
       ],
     );
   }

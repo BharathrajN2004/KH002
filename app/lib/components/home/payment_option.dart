@@ -24,30 +24,40 @@ class PaymentOption extends ConsumerWidget {
     double height = sizeData.height;
     double width = sizeData.width;
     double aspectRatio = sizeData.aspectRatio;
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.all(aspectRatio * 24),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Color(0xFFF3EFFB),
+    return GestureDetector(
+      onTap: todo(),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            margin: EdgeInsets.only(bottom: height * 0.025),
+            padding: EdgeInsets.all(aspectRatio * 24),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Color(0xFFF3EFFB),
+            ),
+            child: Icon(
+              icon,
+              color: colorData.fontColor(.6),
+              size: aspectRatio * 45,
+            ),
           ),
-          child: Icon(
-            Icons.qr_code_scanner,
-            color: colorData.fontColor(.6),
-            size: aspectRatio * 45,
-          ),
-        ),
-        SizedBox(
-          height: height * 0.005,
-        ),
-        CustomText(
-          text: "QR Scan",
-          color: colorData.fontColor(.5),
-          size: sizeData.tooSmall,
-          weight: FontWeight.w600,
-        ),
-      ],
+          Positioned(
+            bottom: 0,
+            left: -width*0.04,
+            child: SizedBox(
+              width: width*0.2,
+              child: CustomText(
+                text: text,
+                color: colorData.fontColor(.5),
+                size: sizeData.tooSmall,
+                weight: FontWeight.w600,
+                align: TextAlign.center,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
