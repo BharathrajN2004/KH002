@@ -9,6 +9,7 @@ export const createTransaction = async (req, res) => {
       sender_id,
       receiver_id,
       amount,
+      description,
       date,
       order_id,
       
@@ -16,11 +17,15 @@ export const createTransaction = async (req, res) => {
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const newUser = new Transaction({
-        "user_id": sender_id,
-
-      
+    const newTransaction = new Transaction({
+      sender_id,
+      receiver_id ,
+      amount,
+      description,
+      date,
+      order_id,
     });
+
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (err) {
