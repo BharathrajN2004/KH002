@@ -5,8 +5,8 @@ class Transactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Transaction History"),
+    return Scaffold(
+      appBar: AppBar(title: Text('Transaction History'), backgroundColor: Color.fromARGB(255, 186, 164, 220)),
     );
   }
 }

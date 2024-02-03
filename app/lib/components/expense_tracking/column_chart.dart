@@ -8,7 +8,7 @@ import '../../utilities/theme/size_data.dart';
 class ColumnChart extends ConsumerWidget {
   ColumnChart({super.key});
   final List<ChartData> chartData = [
-    ChartData('Sun', 12, 10),
+    ChartData('Sun', 12, 2),
     ChartData('Mon', 12, 10),
     ChartData('Tue', 14, 11),
     ChartData('Wed', 16, 10),

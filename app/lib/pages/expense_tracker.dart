@@ -5,7 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../Utilities/theme/color_data.dart';
 import '../Utilities/theme/size_data.dart';
 import '../components/common/text.dart';
-import '../components/expense_tracking/column_chart.dart';
+import '../components/expense_tracking/chart.dart';
+import '../components/expense_tracking/income_expense_field.dart';
 
 class ExpenseTracker extends ConsumerWidget {
   ExpenseTracker({super.key});
@@ -109,7 +110,7 @@ class ExpenseTracker extends ConsumerWidget {
               SizedBox(
                 width: width * 0.02,
               ),
-              IncomeExpenseField(header: "INCOME", value: 3100),
+              IncomeExpenseField(header: "BALANCE", value: 3100),
               Spacer(),
               IncomeExpenseField(header: "SPENT", value: 990.5),
               SizedBox(
@@ -118,50 +119,10 @@ class ExpenseTracker extends ConsumerWidget {
             ],
           ),
           Spacer(),
-          ColumnChart(),
+          Chart(),
           Spacer(),
         ],
       ),
-    );
-  }
-}
-
-class IncomeExpenseField extends ConsumerWidget {
-  final String header;
-  final double value;
-  const IncomeExpenseField({
-    required this.header,
-    required this.value,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    CustomSizeData sizeData = CustomSizeData.from(context);
-    CustomColorData colorData = CustomColorData.from(ref);
-
-    double height = sizeData.height;
-    double width = sizeData.width;
-    double aspectRatio = sizeData.aspectRatio;
-
-    return Column(
-      children: [
-        CustomText(
-          text: header,
-          weight: FontWeight.w600,
-          color: colorData.fontColor(.5),
-          size: sizeData.small,
-        ),
-        SizedBox(
-          height: height * 0.006,
-        ),
-        CustomText(
-          text: "₹$value",
-          weight: FontWeight.w800,
-          color: colorData.fontColor(.8),
-          size: sizeData.header,
-        ),
-      ],
     );
   }
 }

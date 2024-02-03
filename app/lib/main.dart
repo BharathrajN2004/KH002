@@ -1,7 +1,10 @@
 // All Core global plugins
+import 'package:app/auth_shifter.dart';
+import 'package:app/layouts/OBScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // Functions and utility logics
 import 'utilities/theme/theme_provider.dart';
@@ -13,6 +16,8 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  isFirstTimeView = preferences.getBool('isFirstTimeView') ?? true;
 
   runApp(
     // Extending the Application State to ProviderScope of RiverPod
@@ -34,9 +39,7 @@ class MyApp extends ConsumerWidget with CustomThemeDataMixin {
       themeMode: themeMode,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: const Splash(),
+      home: isFirstTimeView == true ? const OBScreen() : const AuthShifter(),
     );
   }
 }
-
-
