@@ -43,7 +43,7 @@ Our proposed Fintech solution, SplitIt is an all-encompassing application that r
 
 Frontend: 
         ->Developed with Flutter, providing a visually appealing and responsive user interface.
->
+        
 Backend: 
         ->Powered by Node.js, utilizing Cloudinary for efficient media management.
 
