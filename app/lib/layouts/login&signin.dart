@@ -1,42 +1,45 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:convert';
 import 'dart:io';
+import 'package:http/http.dart';
+import 'package:app/components/common/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
+import '../Utilities/theme/color_data.dart';
+import '../Utilities/theme/size_data.dart';
 
-class AuthPage extends StatefulWidget {
+class AuthPage extends ConsumerStatefulWidget {
   const AuthPage({super.key});
 
   @override
-  State<AuthPage> createState() => _AuthPageState();
+  ConsumerState<AuthPage> createState() => _AuthPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _AuthPageState extends ConsumerState<AuthPage> {
   bool login = true;
 
   String? errormessage = "";
 
   final emailcontroller = TextEditingController();
-
+  final phonecontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
-
+  final confirmPasswordcontroller = TextEditingController();
   final nameController = TextEditingController();
-  final collectionController = TextEditingController();
-  final colPasswordcontroller = TextEditingController();
 
   String? collectionName;
-  var fontcolor = (opacity) => Color.fromRGBO(48, 40, 76, opacity);
+
   @override
   void dispose() {
     emailcontroller.dispose();
     passwordcontroller.dispose();
+    phonecontroller.dispose();
+    confirmPasswordcontroller.dispose();
     nameController.dispose();
-    collectionController.dispose();
-    colPasswordcontroller.dispose();
     super.dispose();
   }
 
@@ -44,20 +47,25 @@ class _AuthPageState extends State<AuthPage> {
     nameController.clear();
     passwordcontroller.clear();
     emailcontroller.clear();
-    collectionController.clear();
-    colPasswordcontroller.clear();
+    confirmPasswordcontroller.clear();
+    phonecontroller.clear();
   }
 
   Future<void> signinwithEmailandPassword() async {
-    // try {
-    //   await auth().signinWithEmailandPassword(
-    //       email: emailcontroller.text.trim(),
-    //       password: passwordcontroller.text.trim());
-    // } on FirebaseAuthException catch (e) {
-    //   setState(() {
-    //     errormessage = e.message;
-    //   });
-    // }
+    try {
+      Response httpResponse =
+          await post(Uri.parse("http://192.168.1.40/auth/login/"),
+              headers: {"Content-type": "application/json"},
+              body: json.encode({
+                "email": emailcontroller.text,
+                "password": passwordcontroller.text,
+              }));
+      print(httpResponse.body);
+    } on HttpException catch (e) {
+      setState(() {
+        errormessage = e.message;
+      });
+    }
   }
 
   Future<void> createUserwithEmailandPassword() async {
@@ -98,61 +106,21 @@ class _AuthPageState extends State<AuthPage> {
     // );
   }
 
-  Future collectioncreation() async {
-    final email = emailcontroller.text.trim();
-
-    if (collectionController.text.isNotEmpty) {
-      // FirebaseFirestore.instance
-      //     .collection('database')
-      //     .doc(collectionController.text.trim())
-      //     .set({
-      //   "authority": [email],
-      //   "collaborator": [email],
-      //   "creator": {
-      //     "email": email,
-      //     "name": nameController.text.trim(),
-      //     "specialAccess": email,
-      //     'date': DateTime.now().toLocal(),
-      //     'password': colPasswordcontroller.text.trim(),
-      //   }
-      // });
-    } else {
-      // final docref = await FirebaseFirestore.instance
-      //     .collection('database')
-      //     .doc(collectionName)
-      //     .get();
-      // List collabs = docref
-      //     .data()!
-      //     .entries
-      //     .firstWhere((element) => element.key == "collaborator")
-      //     .value;
-      // collabs.add(email);
-      // FirebaseFirestore.instance
-      //     .collection('database')
-      //     .doc(collectionName)
-      //     .set({"collaborator": collabs}, SetOptions(merge: true));
-    }
-  }
-
   File? imager;
 
   String? firstemail;
 
   Future imagepicker(ImageSource source) async {
-    // try {
-    //   final image = await ImagePicker().pickImage(source: source);
-    //   if (image == null) return;
-    //   final tempImage = File(image.path);
-    //   setState(() => this.imager = tempImage);
-    //   final path = 'photo/${emailcontroller.text.trim()}';
-    //   print(path);
-    //   final ref = FirebaseStorage.instance.ref().child(path).putFile(imager!);
-    //   final oncomple = await ref.whenComplete(() => {});
-    //   p = await oncomple.ref.getDownloadURL();
-    //   print(p);
-    // } on PlatformException catch (e) {
-    //   print('Failed to pick the image');
-    // }
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final tempImage = File(image.path);
+      setState(() => this.imager = tempImage);
+      final path = 'photo/${emailcontroller.text.trim()}';
+      print(path);
+    } on PlatformException catch (e) {
+      print('Failed to pick the image');
+    }
   }
 
   snackbar() => ScaffoldMessenger.of(context).showSnackBar(
@@ -173,13 +141,8 @@ class _AuthPageState extends State<AuthPage> {
   InkWell photo(double height, Image imager, String fromwere) {
     return InkWell(
       onTap: () {
-        if (emailcontroller.text.isEmpty) {
-          setState(() {
-            firstemail = "Please enter the email first";
-          });
-        } else {
-          snackbar();
-        }
+        ScaffoldMessenger.of(context).clearSnackBars();
+        snackbar();
       },
       child: Stack(
         children: [
@@ -226,12 +189,12 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  Widget shifting() {
+  Widget shifting(colorData) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          login ? 'Dont have an Account?  ' : 'Have an Existing Account?  ',
+          login ? "Don't have an Account?  " : "Have an Existing Account?  ",
           style: const TextStyle(
               color: Colors.black38, fontWeight: FontWeight.w600, fontSize: 16),
         ),
@@ -241,11 +204,11 @@ class _AuthPageState extends State<AuthPage> {
             clear();
           }),
           child: Text(
-            login ? 'Signin' : 'Login',
-            style: const TextStyle(
+            login ? 'Sign up' : 'Login',
+            style: TextStyle(
                 fontSize: 18,
                 letterSpacing: 1,
-                color: Color.fromRGBO(248, 97, 146, 1),
+                color: colorData.primaryColor(.8),
                 fontWeight: FontWeight.w600,
                 fontFamily: 'Acme'),
           ),
@@ -267,7 +230,7 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   Widget field(double width, String labeltext, TextEditingController controller,
-      TextInputType type, IconData icon) {
+      TextInputType type, IconData icon, CustomColorData colorData) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -283,16 +246,16 @@ class _AuthPageState extends State<AuthPage> {
           });
         },
         controller: controller,
-        cursorColor: fontcolor(1.0),
+        cursorColor: colorData.fontColor(1.0),
         scrollPadding: EdgeInsets.zero,
         style: TextStyle(fontSize: width * 0.04),
         keyboardType: type,
         decoration: InputDecoration(
           hintText: labeltext,
-          hintStyle:
-              TextStyle(color: fontcolor(.5), fontWeight: FontWeight.w500),
-          prefixIconColor: fontcolor(.4),
-          fillColor: fontcolor(.8),
+          hintStyle: TextStyle(
+              color: colorData.fontColor(.5), fontWeight: FontWeight.w500),
+          prefixIconColor: colorData.fontColor(.4),
+          fillColor: colorData.fontColor(.8),
           border: InputBorder.none,
           prefixIcon: Icon(
             icon,
@@ -312,11 +275,13 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    final color = Color.fromRGBO(239, 239, 255, 1);
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    CustomSizeData sizeData = CustomSizeData.from(context);
+    CustomColorData colorData = CustomColorData.from(ref);
+
+    double height = sizeData.height;
+    double width = sizeData.width;
     return Scaffold(
-      backgroundColor: color,
+      backgroundColor: colorData.backgroundColor(1),
       body: SafeArea(
         child: Container(
           height: height,
@@ -326,32 +291,41 @@ class _AuthPageState extends State<AuthPage> {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
-              Image.asset(
-                'assets/images/logo.png',
-                width: width * 0.25,
-                height: width * 0.25,
+              SizedBox(
+                height: height * 0.05,
               ),
-              SizedBox(height: height * 0.03),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: width * 0.25,
+                  height: width * 0.25,
+                  decoration: BoxDecoration(boxShadow: [
+                    BoxShadow(
+                      color: colorData.primaryColor(.2),
+                      blurRadius: 30,
+                    )
+                  ]),
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              ),
+              SizedBox(height: height * 0.05),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    login ? 'Welcome back! to ' : 'Welcome to ',
-                    style: TextStyle(
-                        fontFamily: 'Singni',
-                        wordSpacing: 6,
-                        fontSize: width * 0.05,
-                        fontWeight: FontWeight.w600,
-                        color: const Color.fromARGB(255, 53, 53, 53)),
+                  CustomText(
+                    text: login ? 'Welcome back to ' : 'Welcome to ',
+                    weight: FontWeight.w700,
+                    color: colorData.fontColor(.8),
+                    size: sizeData.header,
                   ),
-                  Text(
-                    ' incubateQR'.toUpperCase(),
-                    style: TextStyle(
-                        fontFamily: 'Singni',
-                        wordSpacing: 6,
-                        fontSize: width * 0.05,
-                        fontWeight: FontWeight.w600,
-                        color: const Color.fromRGBO(248, 97, 146, 1)),
+                  CustomText(
+                    text: ' SplitIt!',
+                    color: colorData.primaryColor(1),
+                    weight: FontWeight.w800,
+                    size: sizeData.superHeader,
                   )
                 ],
               ),
@@ -373,7 +347,7 @@ class _AuthPageState extends State<AuthPage> {
                               photo(
                                   height,
                                   Image.asset(
-                                    'assets/icons/profile.png',
+                                    'assets/images/profile.png',
                                     height: height * 0.1,
                                   ),
                                   "asset"),
@@ -408,164 +382,55 @@ class _AuthPageState extends State<AuthPage> {
               login
                   ? const SizedBox()
                   : field(width, 'Enter your name', nameController,
-                      TextInputType.text, Icons.person),
+                      TextInputType.text, Icons.person, colorData),
               login
                   ? const SizedBox()
                   : SizedBox(
                       height: height * 0.02,
                     ),
-              field(
-                width,
-                'Enter your Email Id',
-                emailcontroller,
-                TextInputType.emailAddress,
-                Icons.mail_outline_rounded,
-              ),
-              firstemail == null
-                  ? SizedBox()
-                  : Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: EdgeInsets.only(right: width * 0.05),
-                        child: Text(
-                          firstemail!,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 255, 73, 134)),
-                        ),
-                      )),
+              login
+                  ? const SizedBox()
+                  : field(width, 'Enter your Mobile Number', phonecontroller,
+                      TextInputType.number, Icons.phone_in_talk, colorData),
               SizedBox(
                 height: height * 0.02,
               ),
-              field(width, "Enter your password", passwordcontroller,
-                  TextInputType.visiblePassword, Icons.password_outlined),
+              field(
+                  width,
+                  'Enter your Email Id',
+                  emailcontroller,
+                  TextInputType.emailAddress,
+                  Icons.mail_outline_rounded,
+                  colorData),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              field(
+                  width,
+                  "Enter your password",
+                  passwordcontroller,
+                  TextInputType.visiblePassword,
+                  Icons.password_outlined,
+                  colorData),
               SizedBox(
                 height: height * 0.025,
               ),
               login
-                  ? SizedBox()
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () => setState(() {
-                            collabSwitch = false;
-                          }),
-                          child: Text(
-                            'CREATE',
-                            style: TextStyle(
-                                color: collabSwitch
-                                    ? const Color.fromARGB(255, 180, 180, 180)
-                                    : const Color.fromARGB(255, 0, 170, 111),
-                                fontWeight: FontWeight.w600,
-                                fontSize: width * 0.04),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        collabShifter(),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        GestureDetector(
-                          onTap: () => setState(() {
-                            collabSwitch = true;
-                          }),
-                          child: Text(
-                            "JOIN        ",
-                            style: TextStyle(
-                                color: collabSwitch
-                                    ? const Color.fromARGB(255, 255, 93, 93)
-                                    : const Color.fromARGB(255, 180, 180, 180),
-                                fontWeight: FontWeight.w600,
-                                fontSize: width * 0.04),
-                          ),
-                        )
-                      ],
-                    ),
+                  ? const SizedBox()
+                  : field(
+                      width,
+                      "Confirm your password",
+                      confirmPasswordcontroller,
+                      TextInputType.visiblePassword,
+                      Icons.lock,
+                      colorData),
+              SizedBox(
+                height: height * 0.025,
+              ),
               login
                   ? const SizedBox()
                   : SizedBox(
                       height: height * 0.02,
-                    ),
-              login
-                  ? const SizedBox()
-                  : Column(
-                      children: [
-                        Text(
-                          collabSwitch
-                              ? "Choose the Collection"
-                              : "Create an Collection",
-                          style: TextStyle(
-                              fontSize: width * 0.0425,
-                              fontWeight: FontWeight.w600,
-                              color: Color.fromARGB(255, 48, 48, 48)),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                       
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.white,
-                          ),
-                          width: width * 0.85,
-                          child: TextField(
-                            controller: colPasswordcontroller,
-                            cursorColor: fontcolor(1.0),
-                            scrollPadding: EdgeInsets.zero,
-                            style: TextStyle(fontSize: width * 0.04),
-                            keyboardType: TextInputType.visiblePassword,
-                            onChanged: (value) {
-                              setState(
-                                () {
-                                  if (collabSwitch) {
-                                    if (value.toString() ==
-                                        chosenCollPassword) {
-                                      showText = null;
-                                    } else {
-                                      showText =
-                                          "Entered Password is incorrect";
-                                    }
-                                  }
-                                },
-                              );
-                            },
-                            decoration: InputDecoration(
-                              hintText: "Enter collection password",
-                              hintStyle: TextStyle(
-                                  color: fontcolor(.5),
-                                  fontWeight: FontWeight.w500),
-                              prefixIconColor: fontcolor(.4),
-                              fillColor: fontcolor(.8),
-                              border: InputBorder.none,
-                              prefixIcon: Icon(
-                                Icons.password_outlined,
-                                size: width * 0.07,
-                              ),
-                            ),
-                          ),
-                        ),
-                        showText != null
-                            ? Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  showText!,
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: width * 0.035),
-                                ),
-                              )
-                            : SizedBox(),
-                        SizedBox(
-                          height: height * 0.03,
-                        ),
-                      ],
                     ),
               GestureDetector(
                 onTap: () {
@@ -577,30 +442,7 @@ class _AuthPageState extends State<AuthPage> {
                         print('done');
                       } else if (p == null) {
                         errorShow(true);
-                      } else {
-                        // if (collabSwitch
-                        //     ? collectionName != null &&
-                        //         colPasswordcontroller.text.isNotEmpty
-                        //     : collectionController.text.isNotEmpty &&
-                        //         colPasswordcontroller.text.isNotEmpty) {
-                        //   //
-                        //   final collectionProvider =
-                        //       Provider.of<CollectionProvider>(context,
-                        //           listen: false);
-                        //   collectionProvider.toggleCollection(
-                        //       collection: collabSwitch
-                        //           ? collectionName!
-                        //           : collectionController.text.trim(),
-                        //       Collectionaccess: collabSwitch
-                        //           ? "collaborator"
-                        //           : "specialAccess");
-                        //   print(collectionProvider.collectionName);
-                        //   createUserwithEmailandPassword();
-                        //   addUser();
-                        //   collectioncreation();
-                        //   print('object');
-                        // }
-                      }
+                      } else {}
                     } else {
                       errorShow(false);
                     }
@@ -610,26 +452,25 @@ class _AuthPageState extends State<AuthPage> {
                   margin: EdgeInsets.symmetric(horizontal: width * 0.3),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      gradient: const LinearGradient(colors: [
-                        Color.fromRGBO(255, 211, 223, 1),
-                        Color.fromRGBO(255, 161, 191, 1)
+                      gradient: LinearGradient(colors: [
+                        colorData.primaryColor(.2),
+                        colorData.primaryColor(.6),
                       ]),
                       borderRadius: BorderRadius.circular(12)),
                   padding: EdgeInsets.symmetric(
                       horizontal: width * 0.05, vertical: 10),
-                  child: Text(
-                    login ? 'LOGIN' : 'SIGNIN',
-                    style: TextStyle(
-                        fontSize: width * 0.04,
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromARGB(255, 63, 63, 63)),
+                  child: CustomText(
+                    text: login ? 'LOGIN' : 'SIGN UP',
+                    color: colorData.secondaryColor(1),
+                    weight: FontWeight.w600,
+                    size: sizeData.regular,
                   ),
                 ),
               ),
               SizedBox(
                 height: height * 0.03,
               ),
-              shifting(),
+              shifting(colorData),
             ],
           ),
         ),

@@ -1,23 +1,6 @@
 import mongoose from "mongoose";
 
-const paymentSchema = new mongoose.Schema({
-    mPin: {
-        type: Number,
-        required: true,
-        length: 6
-    },
-    bankDetails: {
-      type: [bankSchema]
-    },
-    upiDetails: {
-        type: [upiSchema]
-    },
-    cardDetails: {
-        type: [cardSchema]
-    },
-})
-
-const cardSchema  = new mongoose.Schema({
+const cardSchema = new mongoose.Schema({
     cardType: {
         type: String,
         enum: ["Credit Card", "Debit Card"],
@@ -25,7 +8,7 @@ const cardSchema  = new mongoose.Schema({
     cardNetwork: {
         type: String,
         required: true,
-        enum : ["RuPay", "Visa", "MasterCard"],
+        enum: ["RuPay", "Visa", "MasterCard"],
     },
     cardNumber: {
         type: Number,
@@ -48,7 +31,7 @@ const cardSchema  = new mongoose.Schema({
     }
 })
 
-const bankSchema  = new mongoose.Schema({
+const bankSchema = new mongoose.Schema({
     bankName: {
         type: String,
         required: true
@@ -67,6 +50,25 @@ const upiSchema = new mongoose.Schema({
         required: true
     },
 })
+
+export const paymentSchema = new mongoose.Schema({
+    mPin: {
+        type: Number,
+        required: true,
+        length: 6
+    },
+    bankDetails: {
+        type: [bankSchema]
+    },
+    upiDetails: {
+        type: [upiSchema]
+    },
+    cardDetails: {
+        type: [cardSchema]
+    },
+})
+
+
 
 
 const Payment = mongoose.model('Payment', paymentSchema);

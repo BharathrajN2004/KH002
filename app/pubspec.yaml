@@ -75,7 +75,7 @@ flutter:
     - assets/images/ 
     - assets/images/avatars/ 
     - assets/images/group_pics/ 
-    - assets/images/Onboarding/ 
+    - assets/images/on_board/ 
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
