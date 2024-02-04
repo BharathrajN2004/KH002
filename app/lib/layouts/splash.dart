@@ -7,8 +7,7 @@ import '../utilities/theme/color_data.dart';
 import '../utilities/theme/size_data.dart';
 import '../components/common/text.dart';
 
-import 'navigation.dart';
-
+import '../auth_shifter.dart';
 class Splash extends ConsumerWidget {
   const Splash({super.key});
 
@@ -26,7 +25,7 @@ class Splash extends ConsumerWidget {
           curve: Curves.easeInBack,
           splashTransition: SplashTransition.fadeTransition,
           pageTransitionType: PageTransitionType.fade,
-          nextScreen: const Navigation(),
+          nextScreen: const AuthShifter(),
           splashIconSize: sizeData.height,
           splash: Container(
             padding: EdgeInsets.symmetric(horizontal: sizeData.width * 0.04),

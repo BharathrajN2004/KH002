@@ -28,7 +28,7 @@ class RecentContacts extends ConsumerWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(22),
-        color: Color(0xFFF0EBFF),
+        color: colorData.primaryColor(.08),
       ),
       child: Column(
         children: [

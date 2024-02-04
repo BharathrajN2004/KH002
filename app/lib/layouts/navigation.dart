@@ -57,7 +57,9 @@ class _NavigationState extends ConsumerState<Navigation> {
           left: width * 0.06,
           right: width * 0.06,
         ),
-        color: colorData.backgroundColor(1),
+        decoration: BoxDecoration(
+          color: colorData.backgroundColor(1),
+        ),
         child: SafeArea(
           child: IndexedStack(index: navigationIndex, children: widgetStack),
         ),
@@ -67,7 +69,7 @@ class _NavigationState extends ConsumerState<Navigation> {
         padding: EdgeInsets.only(
           left: sizeData.width * 0.01,
           right: sizeData.width * 0.01,
-          bottom: sizeData.height * 0.0175,
+          bottom: sizeData.height * 0.005,
         ),
         color: colorData.bottomNavBarColor,
         child: Row(
@@ -83,6 +85,7 @@ class _NavigationState extends ConsumerState<Navigation> {
                         .jumpTo(currentIndex);
                   }),
                   child: Container(
+                    color: colorData.bottomNavBarColor,
                     padding: EdgeInsets.only(
                       left: sizeData.aspectRatio * 10,
                       right: sizeData.aspectRatio * 10,
@@ -90,7 +93,7 @@ class _NavigationState extends ConsumerState<Navigation> {
                     child: Column(
                       children: [
                         AnimatedContainer(
-                          duration: const Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 300),
                           width: sizeData.aspectRatio * 60,
                           height: 3,
                           decoration: navigationIndex == currentIndex
@@ -114,20 +117,27 @@ class _NavigationState extends ConsumerState<Navigation> {
                           height: sizeData.height * 0.01,
                         ),
                         AnimatedContainer(
+                          width: width * 0.15,
+                          padding:
+                              EdgeInsets.symmetric(vertical: height * 0.01),
                           duration: const Duration(milliseconds: 600),
-                          child: FaIcon(
-                            e,
-                            size: sizeData.aspectRatio *
-                                (navigationIndex == currentIndex ? 50 : 47),
-                            color: colorData.primaryColor(
-                                navigationIndex == currentIndex ? 1 : .2),
-                            shadows: [
-                              BoxShadow(
-                                color: colorData.primaryColor(
-                                    navigationIndex == currentIndex ? .4 : .15),
-                                blurRadius: 40,
-                              ),
-                            ],
+                          child: Center(
+                            child: FaIcon(
+                              e,
+                              size: sizeData.aspectRatio *
+                                  (navigationIndex == currentIndex ? 50 : 47),
+                              color: colorData.primaryColor(
+                                  navigationIndex == currentIndex ? 1 : .2),
+                              shadows: [
+                                BoxShadow(
+                                  color: colorData.primaryColor(
+                                      navigationIndex == currentIndex
+                                          ? .4
+                                          : .15),
+                                  blurRadius: 40,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],

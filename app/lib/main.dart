@@ -1,5 +1,4 @@
 // All Core global plugins
-import 'package:app/auth_shifter.dart';
 import 'package:app/layouts/OBScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,7 +38,7 @@ class MyApp extends ConsumerWidget with CustomThemeDataMixin {
       themeMode: themeMode,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: isFirstTimeView == true ? const OBScreen() : const AuthShifter(),
+      home: isFirstTimeView == true ? const OBScreen() : const Splash(),
     );
   }
 }

@@ -21,27 +21,32 @@ class ChartToggle extends ConsumerWidget {
     CustomColorData colorData = CustomColorData.from(ref);
 
     double width = sizeData.width;
+    double height = sizeData.height;
 
-    return Row(
-      children: [
-        Container(
-          width: width * 0.06,
-          height: 6,
-          decoration: BoxDecoration(
-            color:
-                fixed ? colorData.primaryColor(1) : colorData.secondaryColor(1),
-            borderRadius: BorderRadius.circular(3),
+    return Container(
+      color: colorData.backgroundColor(1),
+      padding: EdgeInsets.symmetric(vertical: height*0.02,horizontal: width*0.04),
+      child: Row(
+        children: [
+          Container(
+            width: width * 0.06,
+            height: 6,
+            decoration: BoxDecoration(
+              color:
+                  fixed ? colorData.primaryColor(1) : colorData.secondaryColor(1),
+              borderRadius: BorderRadius.circular(3),
+            ),
           ),
-        ),
-        SizedBox(
-          width: width * 0.01,
-        ),
-        CustomText(
-          text: header,
-          color: colorData.fontColor(.8),
-          weight: FontWeight.w800,
-        ),
-      ],
+          SizedBox(
+            width: width * 0.01,
+          ),
+          CustomText(
+            text: header,
+            color: colorData.fontColor(.8),
+            weight: FontWeight.w800,
+          ),
+        ],
+      ),
     );
   }
 }

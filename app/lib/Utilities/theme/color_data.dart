@@ -8,6 +8,8 @@ class CustomColorData {
   final Color Function(double) primaryColor;
   final Color Function(double) backgroundColor;
   final Color Function(double) secondaryColor;
+  final Gradient backgroundGradient;
+  final Gradient bottomIconGradient;
   final Color bottomNavBarColor;
 
   CustomColorData({
@@ -16,6 +18,8 @@ class CustomColorData {
     required this.backgroundColor,
     required this.bottomNavBarColor,
     required this.secondaryColor,
+    required this.backgroundGradient,
+    required this.bottomIconGradient,
   });
 
   factory CustomColorData.from(WidgetRef ref) {
@@ -31,8 +35,26 @@ class CustomColorData {
     Color primaryColor(double opacity) =>
         statePrimaryColor.withOpacity(opacity);
 
+    Gradient _backgroundGradient = const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Color(0XFF1D2748),
+        Color(0XFF161616),
+      ],
+    );
+
+    Gradient _bottomIconGradient = const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Color(0XFF797DE2),
+        Color(0XFFAA3FF5),
+      ],
+    );
+
     Color secondaryColor(double opacity) => isDark
-        ? Color(0XFF333354).withOpacity(opacity)
+        ? Color.fromARGB(255, 36, 36, 55).withOpacity(opacity)
         : Colors.white.withOpacity(opacity);
 
     Color backgroundColor(double opacity) =>
@@ -46,6 +68,8 @@ class CustomColorData {
       backgroundColor: backgroundColor,
       bottomNavBarColor: bottomNavBarColor,
       secondaryColor: secondaryColor,
+      backgroundGradient: _backgroundGradient,
+      bottomIconGradient: _bottomIconGradient,
     );
   }
 }

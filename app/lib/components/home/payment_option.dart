@@ -34,19 +34,19 @@ class PaymentOption extends ConsumerWidget {
             padding: EdgeInsets.all(aspectRatio * 24),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Color(0xFFF3EFFB),
+              color: colorData.primaryColor(.08),
             ),
             child: Icon(
               icon,
-              color: colorData.fontColor(.6),
+              color: colorData.fontColor(.8),
               size: aspectRatio * 45,
             ),
           ),
           Positioned(
             bottom: 0,
-            left: -width*0.04,
+            left: -width * 0.04,
             child: SizedBox(
-              width: width*0.2,
+              width: width * 0.2,
               child: CustomText(
                 text: text,
                 color: colorData.fontColor(.5),

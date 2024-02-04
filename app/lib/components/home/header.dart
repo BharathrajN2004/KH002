@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../pages/profile.dart';
 import '../../utilities/theme/color_data.dart';
 import '../../utilities/theme/size_data.dart';
 import '../common/text.dart';
@@ -79,19 +79,27 @@ class Header extends ConsumerWidget {
         SizedBox(
           width: width * 0.03,
         ),
-        Container(
-          padding: EdgeInsets.all(
-            aspectRatio * 4,
+        GestureDetector(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Profile(),
+            ),
           ),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: colorData.primaryColor(1),
-          ),
-          child: Image.asset(
-            "assets/images/avatars/avatar1.png",
-            width: aspectRatio * 80,
-            height: aspectRatio * 80,
-            fit: BoxFit.fill,
+          child: Container(
+            padding: EdgeInsets.all(
+              aspectRatio * 4,
+            ),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: colorData.primaryColor(1),
+            ),
+            child: Image.asset(
+              "assets/images/avatars/avatar1.png",
+              width: aspectRatio * 80,
+              height: aspectRatio * 80,
+              fit: BoxFit.fill,
+            ),
           ),
         ),
       ],
