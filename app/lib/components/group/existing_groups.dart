@@ -117,12 +117,15 @@ class ExistingGroups extends ConsumerWidget {
                       ),
                     ),
                     SizedBox(
-                      width: width * 0.03,
+                      width: width * 0.045,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        groups[index]["name"],
+                        CustomText(
+                          text: groups[index]["name"],
+                          weight: FontWeight.w800,
+                        ),
                         SizedBox(
                           height: height * 0.008,
                         ),

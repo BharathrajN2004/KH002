@@ -1,4 +1,5 @@
 import 'package:app/auth_shifter.dart';
+import 'package:app/components/common/back_button.dart';
 import 'package:app/components/profile/color_palette.dart';
 import 'package:app/components/profile/upis.dart';
 import 'package:app/providers/user_detail_provider.dart';
@@ -41,9 +42,10 @@ class Profile extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  CustomBackButton(),
                   ThemeToggle(),
                 ],
               ),
@@ -117,7 +119,7 @@ class Profile extends ConsumerWidget {
                   SharedPreferences pref =
                       await SharedPreferences.getInstance();
                   pref.setString("userData", "");
-                  ref.read(userDataProvider.notifier).addUserData(User.empty());
+                  ref.read(userDataProvider.notifier).addUserData(null);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

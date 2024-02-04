@@ -6,7 +6,7 @@ import '../class/user.dart';
 class UserDetailNotifier extends StateNotifier<User?> {
   UserDetailNotifier() : super(null);
 
-  void addUserData(User userData) {
+  void addUserData(User? userData) {
     state = userData;
   }
 }

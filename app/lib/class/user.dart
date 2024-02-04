@@ -21,15 +21,4 @@ class User {
     this.paymenOptions,
   });
 
-  factory User.empty() {
-    return User(
-      token: "",
-      id: "",
-      name: '',
-      // profile: "",
-      email: "",
-      password: "",
-      phoneNo: 0,
-    );
-  }
 }
