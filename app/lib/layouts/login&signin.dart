@@ -1,9 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import "package:http/http.dart" as http;
 import 'dart:convert';
 import 'dart:io';
 import 'package:app/class/user.dart';
 import 'package:app/providers/user_detail_provider.dart';
+import 'package:cloudinary_flutter/cloudinary_object.dart';
 import 'package:http/http.dart';
 import 'package:app/components/common/text.dart';
 import 'package:flutter/material.dart';
@@ -89,8 +91,18 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     }
   }
 
+  upload() async {
+    var resp = await http.post(Uri.parse(
+        'https://api.cloudinary.com/v1_1/profiles/upload?file=https://cloudinary-devs.github.io/cld-docs-assets/assets/images/<file_name>&upload_preset=<upload_preset>&api_key=<api_key>&public_id=<public_id>'));
+    var data = json.decode(resp.body);
+    return data;
+  }
+
   Future<void> createUserwithEmailandPassword() async {
     try {
+      CloudinaryObject cloudinary =
+          CloudinaryObject.fromCloudName(cloudName: "profiles");
+
       Response httpResponse =
           await post(Uri.parse("http://192.168.1.40/auth/signup/"),
               headers: {"Content-type": "application/json"},
@@ -124,32 +136,6 @@ class _AuthPageState extends ConsumerState<AuthPage> {
         errormessage = e.message;
       });
     }
-  }
-
-  String? p;
-  Future<void> addUser() async {
-    // await FirebaseFirestore.instance
-    //     .collection('users')
-    //     .doc(emailcontroller.text.trim().toLowerCase())
-    //     .set(
-    //   {
-    //     'name': nameController.text.trim(),
-    //     'email': emailcontroller.text.trim().toLowerCase(),
-    //     'password': passwordcontroller.text.trim(),
-    //     'photo': p,
-    //     'database': {
-    //       'collaborator': [collectionName != null ? collectionName : ""],
-    //       'authority': [],
-    //       'creator': {
-    //         'name': collectionController.text.isNotEmpty
-    //             ? collectionController.text.trim()
-    //             : "",
-    //         'collabpassword':
-    //             collabSwitch ? "" : colPasswordcontroller.text.trim()
-    //       }
-    //     },
-    //   },
-    // );
   }
 
   File? imager;
