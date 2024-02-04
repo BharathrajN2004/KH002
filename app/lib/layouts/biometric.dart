@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 
-class AuthenticationScreen extends StatefulWidget {
-  const AuthenticationScreen({Key? key}) : super(key: key);
+class BioMetricScreen extends StatefulWidget {
+  const BioMetricScreen({Key? key}) : super(key: key);
 
   @override
-  State<AuthenticationScreen> createState() => _AuthenticationScreenState();
+  State<BioMetricScreen> createState() => _BioMetricScreenState();
 }
 
-class _AuthenticationScreenState extends State<AuthenticationScreen> {
+class _BioMetricScreenState extends State<BioMetricScreen> {
   bool canAuthenticate = false;
   bool didAuthenticate = false;
 
