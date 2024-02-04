@@ -1,4 +1,5 @@
 import 'package:app/components/profile/color_palette.dart';
+import 'package:app/components/profile/upis.dart';
 import 'package:app/providers/user_detail_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -96,8 +97,10 @@ class Profile extends ConsumerWidget {
               BankAccounts(),
               SizedBox(height: height * 0.01),
               SavedCards(),
+              SizedBox(height: height * 0.01),
+              Upis(),
               SizedBox(
-                height: height * 0.03,
+                height: height * 0.02,
               ),
               ProfileTile(
                   text: 'Help', icon: Icons.help_outline_outlined, todo: () {}),

@@ -7,6 +7,13 @@ import '../common/text.dart';
 
 class SavedCards extends ConsumerWidget {
   SavedCards({super.key});
+  List cards = [
+    {
+      "image": "assets/images/payment_options/Cards/Axis.png",
+      "name": "Flipkart Axis Bank Credit Card",
+      "type": "Mastercard",
+    },
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,7 +48,7 @@ class SavedCards extends ConsumerWidget {
                     padding: EdgeInsets.symmetric(horizontal: width * 0.02),
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
-                    itemCount: 3,
+                    itemCount: cards.length,
                     itemBuilder: (context, index) {
                       return Container(
                         width: width * .6,
@@ -57,6 +64,7 @@ class SavedCards extends ConsumerWidget {
                             children: [
                               Container(
                                 width: width * .18,
+                                height: height,
                                 padding: EdgeInsets.all(aspectRation * 8),
                                 decoration: BoxDecoration(
                                   color: colorData.primaryColor(.05),
@@ -64,7 +72,7 @@ class SavedCards extends ConsumerWidget {
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Image.asset(
-                                  "assets/images/payment_options/Cards/Axis.png",
+                                  cards[index]["image"],
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -79,7 +87,7 @@ class SavedCards extends ConsumerWidget {
                                       height: height * 0.002,
                                     ),
                                     CustomText(
-                                      text: "Flipkart Axis Bank Credit Card",
+                                      text: cards[index]["name"],
                                       size: sizeData.regular,
                                       weight: FontWeight.w700,
                                       color: colorData.fontColor(.8),
@@ -89,7 +97,7 @@ class SavedCards extends ConsumerWidget {
                                       height: height * 0.006,
                                     ),
                                     CustomText(
-                                      text: "Mastercard",
+                                      text: cards[index]["type"],
                                       size: sizeData.verySmall,
                                       weight: FontWeight.w600,
                                       color: colorData.fontColor(.6),
