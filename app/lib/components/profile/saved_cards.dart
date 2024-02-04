@@ -13,6 +13,11 @@ class SavedCards extends ConsumerWidget {
       "name": "Flipkart Axis Bank Credit Card",
       "type": "Mastercard",
     },
+    {
+      "image": "assets/images/payment_options/Cards/sbi.png",
+      "name": "SBI Simply Save Credit Card",
+      "type": "Visa",
+    },
   ];
 
   @override
