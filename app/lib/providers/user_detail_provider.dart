@@ -6,16 +6,8 @@ import '../class/user.dart';
 class UserDetailNotifier extends StateNotifier<User?> {
   UserDetailNotifier() : super(null);
 
-  void addUserData(Map<String, dynamic> userData) {
-    state = User(
-      token: userData["token"],
-      name: userData["name"],
-      profile: userData["profile"],
-      email: userData["email"],
-      password: userData["password"],
-      passcode: userData["passcode"],
-      dob: userData["dob"],
-    );
+  void addUserData(User userData) {
+    state = userData;
   }
 }
 

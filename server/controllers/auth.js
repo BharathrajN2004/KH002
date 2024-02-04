@@ -1,30 +1,30 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import User from "../models/user.js";
 
 /* REGISTER USER */
 export const signup = async (req, res) => {
   try {
     const {
       name,
-      profilePic,
-      dob,
       email,
+      phoneNo,
       password,
-      location,
-      paymentDetail
+      // location,
+      // paymentDetail
     } = req.body;
+
+    console.log(req.body);
 
     const passwordHash = await bcrypt.hash(password, 10);
 
     const newUser = new User({
-      name,
-      profilePic,
-      dob,
-      email,
+      name: name,
+      email: email,
+      phoneNo: phoneNo,
       password: passwordHash,
-      location,
-      paymentDetail
+      // location,
+      // paymentDetail
     });
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
@@ -37,7 +37,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(email,password);
+    console.log(email, password);
     const user = await User.findOne({ email: email });
     if (!user) return res.status(400).json({ msg: "User does not exist. " });
 
@@ -48,7 +48,7 @@ export const login = async (req, res) => {
     delete user.password;
 
     console.log(user.firstName + " " + user.lastName, " logined Successfully");
-    console.log(token,user);
+    console.log(token, user);
     res.status(200).json({ token, user });
   } catch (err) {
     res.status(500).json({ error: err.message });
