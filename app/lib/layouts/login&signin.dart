@@ -2,6 +2,8 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:app/class/user.dart';
+import 'package:app/providers/user_detail_provider.dart';
 import 'package:http/http.dart';
 import 'package:app/components/common/text.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Utilities/theme/color_data.dart';
 import '../Utilities/theme/size_data.dart';
@@ -60,7 +63,25 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 "email": emailcontroller.text,
                 "password": passwordcontroller.text,
               }));
-      print(httpResponse.body);
+      var data = Map.from(json.decode(httpResponse.body));
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      Map ofData = {
+        "token": data["token"],
+        "name": data["user"]["name"],
+        "id": data["user"]["_id"],
+        "email": data["user"]["email"],
+        "password": data["user"]["password"],
+        "phoneNo": data["user"]["phoneNo"],
+      };
+      pref.setString("userData", json.encode(ofData));
+      User userData = User(
+          token: data["token"],
+          name: data["user"]["name"],
+          id: data["user"]["_id"],
+          email: data["user"]["email"],
+          password: data["user"]["password"],
+          phoneNo: int.parse(data["user"]["phoneNo"].toString()));
+      ref.read(userDataProvider.notifier).addUserData(userData);
     } on HttpException catch (e) {
       setState(() {
         errormessage = e.message;
@@ -69,15 +90,40 @@ class _AuthPageState extends ConsumerState<AuthPage> {
   }
 
   Future<void> createUserwithEmailandPassword() async {
-    // try {
-    //   await auth().createUserWithEmailandPassword(
-    //       email: emailcontroller.text.trim(),
-    //       password: passwordcontroller.text.trim());
-    // } on FirebaseAuthException catch (e) {
-    //   setState(() {
-    //     errormessage = e.message;
-    //   });
-    // }
+    try {
+      Response httpResponse =
+          await post(Uri.parse("http://192.168.1.40/auth/signup/"),
+              headers: {"Content-type": "application/json"},
+              body: json.encode({
+                "name": nameController.text,
+                "email": emailcontroller.text,
+                "password": passwordcontroller.text,
+                "phoneNo": phonecontroller.text,
+              }));
+      var data = Map.from(json.decode(httpResponse.body));
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      Map ofData = {
+        "token": data["token"],
+        "name": data["user"]["name"],
+        "id": data["user"]["_id"],
+        "email": data["user"]["email"],
+        "password": data["user"]["password"],
+        "phoneNo": data["user"]["phoneNo"],
+      };
+      pref.setString("userData", json.encode(ofData));
+      User userData = User(
+          token: data["token"],
+          name: data["user"]["name"],
+          id: data["user"]["_id"],
+          email: data["user"]["email"],
+          password: data["user"]["password"],
+          phoneNo: int.parse(data["user"]["phoneNo"].toString()));
+      ref.read(userDataProvider.notifier).addUserData(userData);
+    } on HttpException catch (e) {
+      setState(() {
+        errormessage = e.message;
+      });
+    }
   }
 
   String? p;
@@ -439,10 +485,9 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                         errormessage == 'The email is badly formated')) {
                       if (login) {
                         signinwithEmailandPassword();
-                        print('done');
-                      } else if (p == null) {
-                        errorShow(true);
-                      } else {}
+                      } else {
+                        createUserwithEmailandPassword();
+                      }
                     } else {
                       errorShow(false);
                     }

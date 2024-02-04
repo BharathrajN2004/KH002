@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import authRoutes from "./routes/auth.js";
-import User from "./models/User.js";
+import User from "./models/user.js";
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -42,11 +42,8 @@ mongoose
 
 
 // const user = {
-//   "firstName": "Daniel",
-//   "lastName": "Anderson",
+//   "name": "Daniel",
 //   "email": "danielanderson@example.com",
 //   "password": "daniel456",
-//   "interests": ["cooking", "gardening"],
-//   "location": "Melbourne",
-//   "occupation": "Chef"
+//   "phoneNo": 7345456866,
 // }; 

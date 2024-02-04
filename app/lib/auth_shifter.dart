@@ -19,7 +19,17 @@ class _authShifter extends ConsumerState<AuthShifter> {
   Future localToken() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     if (preferences.getString("userData") != null) {
-      var userData = jsonDecode(preferences.getString("userData")!);
+      Map<String, dynamic> data =
+          jsonDecode(preferences.getString("userData")!);
+      print(data);
+      User userData = User(
+          token: data["token"],
+          id: data["id"],
+          name: data["name"],
+          email: data["email"],
+          password: data["password"],
+          phoneNo: int.parse(data["phoneNo"].toString()));
+
       ref.read(userDataProvider.notifier).addUserData(userData);
     }
   }

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../auth_shifter.dart';
 import '../components/obscreen/Bubble.dart';
 import '../components/obscreen/DATA.dart';
 import '../components/obscreen/NavigatorIndicator.dart';
@@ -125,7 +126,8 @@ class _OBScreenState extends State<OBScreen> {
                   setIsFirstTimeView();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Navigation()),
+                    MaterialPageRoute(
+                        builder: (context) => const AuthShifter()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

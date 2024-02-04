@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import {paymentSchema} from "./Payment.js";
+// import { paymentSchema } from "./Payment.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -12,32 +12,29 @@ const userSchema = new mongoose.Schema(
     // profilePic: {
     //   type: ,
     // },
-    dob: {
-      type: String,
-      required: true
-    },
     email: {
       type: String,
       required: true,
       maxlength: 50,
       unique: true,
     },
+    phoneNo: {
+      type: Number,
+      required: true,
+      length: 10,
+    },
     password: {
       type: String,
       required: true,
       minlength: 5,
     },
-    location: {
-      type: String,
-      required: true,
-    },
-    paymentDetail: {
-      type: paymentSchema
-    },
-    transactionHistory: {
-      type: Schema.Types.ObjectId,
-      ref: 'Transactions'
-    }
+    // paymentDetail: {
+    //   type: paymentSchema
+    // },
+    // transactionHistory: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Transactions'
+    // }
   },
   {
     timestamps: true

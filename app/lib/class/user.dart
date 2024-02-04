@@ -3,34 +3,33 @@ import 'package:flutter/foundation.dart';
 class User {
   String token;
   String name;
-  String profile;
+  String id;
+  // String profile;
   String email;
   String password;
-  int passcode;
-  DateTime dob;
+  int phoneNo;
   List<Map<String, dynamic>>? paymenOptions;
 
   User({
     required this.token,
     required this.name,
-    required this.profile,
+    required this.id,
+    // required this.profile,
     required this.email,
     required this.password,
-    required this.passcode,
-    required this.dob,
+    required this.phoneNo,
     this.paymenOptions,
   });
 
   factory User.empty() {
     return User(
       token: "",
+      id: "",
       name: '',
-      profile: "",
+      // profile: "",
       email: "",
       password: "",
-      passcode: 0000,
-      dob: DateTime.now(),
+      phoneNo: 0,
     );
   }
-  
 }
