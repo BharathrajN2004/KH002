@@ -24,7 +24,7 @@ class ExistingGroups extends ConsumerWidget {
     },
     {
       "image": "assets/images/group_pics/spotify_img.png",
-      "name": "Spotify",
+      "name": "Spotify Fam",
     },
     {
       "image": "assets/images/group_pics/kfc_img.png",
