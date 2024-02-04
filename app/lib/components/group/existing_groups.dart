@@ -9,9 +9,28 @@ import '../../utilities/static_data.dart';
 import '../common/text.dart';
 
 class ExistingGroups extends ConsumerWidget {
-  const ExistingGroups({
+  ExistingGroups({
     super.key,
   });
+
+  List groups = [
+    {
+      "image": "assets/images/group_pics/Domino's_img.png",
+      "name": "Domino's Pizza Party",
+    },
+    {
+      "image": "assets/images/group_pics/netflix_img.png",
+      "name": "Bingers",
+    },
+    {
+      "image": "assets/images/group_pics/spotify_img.png",
+      "name": "Spotify",
+    },
+    {
+      "image": "assets/images/group_pics/kfc_img.png",
+      "name": "Friends Forever",
+    },
+  ];
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     CustomSizeData sizeData = CustomSizeData.from(context);
@@ -73,7 +92,7 @@ class ExistingGroups extends ConsumerWidget {
             child: ListView.builder(
               padding: EdgeInsets.symmetric(
                   horizontal: width * 0.01, vertical: height * 0.01),
-              itemCount: 10,
+              itemCount: groups.length,
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsets.only(bottom: height * 0.015),
@@ -92,7 +111,7 @@ class ExistingGroups extends ConsumerWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.asset(
-                        "assets/images/group_pics/Domino's_img.png",
+                        groups[index]["image"],
                         height: aspectRatio * 100,
                         fit: BoxFit.cover,
                       ),
@@ -103,7 +122,7 @@ class ExistingGroups extends ConsumerWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(text: "Friends forever"),
+                        groups[index]["name"],
                         SizedBox(
                           height: height * 0.008,
                         ),
