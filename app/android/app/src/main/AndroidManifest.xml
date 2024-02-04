@@ -1,4 +1,7 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.abc">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
     <application
         android:label="app"
         android:name="${applicationName}"
@@ -30,4 +33,6 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+
+    
 </manifest>
