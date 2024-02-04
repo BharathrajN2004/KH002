@@ -65,7 +65,7 @@ class BankAccounts extends ConsumerWidget {
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Image.asset(
-                                  "app/assets/images/payment_options/Banks/sbi.png",
+                                  "assets/images/payment_options/Banks/sbi.png",
                                   fit: BoxFit.cover,
                                 ),
                               ),
