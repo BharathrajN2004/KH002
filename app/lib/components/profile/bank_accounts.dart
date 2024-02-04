@@ -21,7 +21,7 @@ class BankAccounts extends ConsumerWidget {
       "image": "assets/images/payment_options/Banks/kotak.png",
       "name": "Kotak Mahindra Bank",
     },
-  ]
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
