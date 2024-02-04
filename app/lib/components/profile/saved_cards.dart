@@ -64,7 +64,7 @@ class SavedCards extends ConsumerWidget {
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Image.asset(
-                                  "app/assets/images/Payment Options/Cards/Axis.png",
+                                  "app/assets/images/payment_options/Cards/Axis.png",
                                   fit: BoxFit.cover,
                                 ),
                               ),
