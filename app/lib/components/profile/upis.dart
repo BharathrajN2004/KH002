@@ -9,8 +9,8 @@ class Upis extends ConsumerWidget {
   Upis({super.key});
 
   List upis = [
-    {"name": "7894561235@okaxis"},
-    {"name": "7894561235@kotak"}
+    {"name": "9523648970@okaxis"},
+    {"name": "9523648970@kotak"}
   ];
   @override
   Widget build(BuildContext context, WidgetRef ref) {
