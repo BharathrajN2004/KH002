@@ -19,22 +19,18 @@ class _authShifter extends ConsumerState<AuthShifter> {
   @override
   Widget build(BuildContext context) {
     var refData = ref.watch(userDataProvider);
-    if (refData != null) {
-      return Navigation();
-    } else {
-      return AuthPage();
-    }
-    // return StreamBuilder(
-    //     stream: SharedPreferences.getInstance().asStream(),
-    //     builder: (context, snapshot) {
-    //       print(snapshot.data!.getString("userData"));
-    //       if ((snapshot.hasData &&
-    //           snapshot.data!.getString("userData") != null &&
-    //           snapshot.data!.getString("userData") != "")) {
-    //         return Navigation();
-    //       } else {
-    //         return AuthPage();
-    //       }
-    //     });
+    return refData == null
+        ? StreamBuilder(
+            stream: SharedPreferences.getInstance().asStream(),
+            builder: (context, snapshot) {
+              if ((snapshot.hasData &&
+                  snapshot.data!.getString("userData") != null &&
+                  snapshot.data!.getString("userData") != "")) {
+                return Navigation();
+              } else {
+                return AuthPage();
+              }
+            })
+        : Navigator();
   }
 }

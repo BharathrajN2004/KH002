@@ -108,12 +108,15 @@ class ExistingGroups extends ConsumerWidget {
                     SizedBox(
                       width: width * 0.02,
                     ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        groups[index]["image"],
-                        height: aspectRatio * 100,
-                        fit: BoxFit.cover,
+                    SizedBox(
+                      width: width*.125,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          groups[index]["image"],
+                          height: aspectRatio * 100,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     SizedBox(

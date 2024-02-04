@@ -6,7 +6,6 @@ import '../pages/expense_tracker.dart';
 import '../pages/fundraiser.dart';
 import '../pages/group.dart';
 import '../pages/nft.dart';
-import '../pages/settings.dart';
 import '../providers/navigation_index_provider.dart';
 import '../utilities/theme/color_data.dart';
 import '../utilities/theme/size_data.dart';
@@ -27,7 +26,7 @@ class _NavigationState extends ConsumerState<Navigation> {
     Home(),
     Group(),
     ExpenseTracker(),
-    NFTPage(),
+    // NFTPage(),
     FundRaiser(),
   ];
 
@@ -35,7 +34,7 @@ class _NavigationState extends ConsumerState<Navigation> {
     FontAwesomeIcons.house,
     FontAwesomeIcons.peopleGroup,
     FontAwesomeIcons.chartSimple,
-    FontAwesomeIcons.moneyBillTrendUp,
+    // FontAwesomeIcons.moneyBillTrendUp,
     FontAwesomeIcons.handHoldingHeart,
   ];
 

@@ -125,18 +125,6 @@ class _createGroup extends ConsumerState<CreateGroup> {
               ],
             ),
           ),
-          // Positioned(
-          //   bottom: -height * 0.042,
-          //   left: 0,
-          //   right: 0,
-          //   child: Container(
-          //     height: aspectRatio * 130,
-          //     decoration: BoxDecoration(
-          //       shape: BoxShape.circle,
-          //       color: colorData.secondaryColor(1),
-          //     ),
-          //   ),
-          // ),
           Positioned(
             bottom: -height * 0.04,
             left: 0,
@@ -171,26 +159,30 @@ class _createGroup extends ConsumerState<CreateGroup> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  GestureDetector(onTap: () {
-                                    Navigator.push(
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                GroupForum()));
-                                  }),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: height * 0.01,
-                                        horizontal: width * 0.035),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: colorData.primaryColor(.6),
-                                    ),
-                                    child: CustomText(
-                                      text: "Create",
-                                      color: colorData.secondaryColor(1),
-                                      weight: FontWeight.w800,
-                                      size: sizeData.medium,
+                                          builder: (context) => GroupForum(),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: height * 0.01,
+                                          horizontal: width * 0.035),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: colorData.primaryColor(.6),
+                                      ),
+                                      child: CustomText(
+                                        text: "Create",
+                                        color: colorData.secondaryColor(1),
+                                        weight: FontWeight.w800,
+                                        size: sizeData.medium,
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -252,7 +244,7 @@ class _createGroup extends ConsumerState<CreateGroup> {
             bottom: -height * 0.018,
             left: 0,
             child: Container(
-              width: width * 0.331,
+              width: width * 0.34,
               height: height * 0.018,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
@@ -267,7 +259,7 @@ class _createGroup extends ConsumerState<CreateGroup> {
             bottom: -height * 0.018,
             right: 0,
             child: Container(
-              width: width * 0.331,
+              width: width * 0.34,
               height: height * 0.018,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
