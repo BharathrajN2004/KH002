@@ -1,3 +1,4 @@
+import 'package:app/components/group/group_forum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -170,6 +171,13 @@ class _createGroup extends ConsumerState<CreateGroup> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
+                                  GestureDetector(onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                GroupForum()));
+                                  }),
                                   Container(
                                     padding: EdgeInsets.symmetric(
                                         vertical: height * 0.01,
