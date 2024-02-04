@@ -117,6 +117,9 @@ class Profile extends ConsumerWidget {
                   ref.read(userDataProvider.notifier).addUserData(User.empty());
                 },
               ),
+              SizedBox(
+                height: height * 0.03,
+              ),
             ],
           ),
         ),
