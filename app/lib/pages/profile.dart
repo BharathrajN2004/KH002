@@ -1,3 +1,4 @@
+import 'package:app/auth_shifter.dart';
 import 'package:app/components/profile/color_palette.dart';
 import 'package:app/components/profile/upis.dart';
 import 'package:app/providers/user_detail_provider.dart';
@@ -115,8 +116,14 @@ class Profile extends ConsumerWidget {
                 todo: () async {
                   SharedPreferences pref =
                       await SharedPreferences.getInstance();
-                  pref.clear();
+                  pref.setString("userData", "");
                   ref.read(userDataProvider.notifier).addUserData(User.empty());
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AuthShifter(),
+                    ),
+                  );
                 },
               ),
               SizedBox(

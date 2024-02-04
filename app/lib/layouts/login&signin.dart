@@ -66,24 +66,37 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 "password": passwordcontroller.text,
               }));
       var data = Map.from(json.decode(httpResponse.body));
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      Map ofData = {
-        "token": data["token"],
-        "name": data["user"]["name"],
-        "id": data["user"]["_id"],
-        "email": data["user"]["email"],
-        "password": data["user"]["password"],
-        "phoneNo": data["user"]["phoneNo"],
-      };
-      pref.setString("userData", json.encode(ofData));
-      User userData = User(
-          token: data["token"],
-          name: data["user"]["name"],
-          id: data["user"]["_id"],
-          email: data["user"]["email"],
-          password: data["user"]["password"],
-          phoneNo: int.parse(data["user"]["phoneNo"].toString()));
-      ref.read(userDataProvider.notifier).addUserData(userData);
+      if (httpResponse.statusCode == 200) {
+        print(data);
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        Map ofData = {
+          "token": data["token"],
+          "name": data["user"]["name"],
+          "id": data["user"]["_id"],
+          "email": data["user"]["email"],
+          "password": data["user"]["password"],
+          "phoneNo": data["user"]["phoneNo"],
+        };
+        pref.setString("userData", json.encode(ofData));
+        User userData = User(
+            token: data["token"],
+            name: data["user"]["name"],
+            id: data["user"]["_id"],
+            email: data["user"]["email"],
+            password: data["user"]["password"],
+            phoneNo: int.parse(data["user"]["phoneNo"].toString()));
+        ref.read(userDataProvider.notifier).addUserData(userData);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Center(
+              child: Text(
+                data["msg"],
+              ),
+            ),
+          ),
+        );
+      }
     } on HttpException catch (e) {
       setState(() {
         errormessage = e.message;
@@ -113,24 +126,14 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 "phoneNo": phonecontroller.text,
               }));
       var data = Map.from(json.decode(httpResponse.body));
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      Map ofData = {
-        "token": data["token"],
-        "name": data["user"]["name"],
-        "id": data["user"]["_id"],
-        "email": data["user"]["email"],
-        "password": data["user"]["password"],
-        "phoneNo": data["user"]["phoneNo"],
-      };
-      pref.setString("userData", json.encode(ofData));
-      User userData = User(
-          token: data["token"],
-          name: data["user"]["name"],
-          id: data["user"]["_id"],
-          email: data["user"]["email"],
-          password: data["user"]["password"],
-          phoneNo: int.parse(data["user"]["phoneNo"].toString()));
-      ref.read(userDataProvider.notifier).addUserData(userData);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Center(child: Text("User Created Successfuly")),
+        ),
+      );
+      setState(() {
+        login = true;
+      });
     } on HttpException catch (e) {
       setState(() {
         errormessage = e.message;

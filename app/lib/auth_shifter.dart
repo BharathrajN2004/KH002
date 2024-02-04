@@ -16,6 +16,7 @@ class AuthShifter extends ConsumerStatefulWidget {
 }
 
 class _authShifter extends ConsumerState<AuthShifter> {
+
   Future localToken() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     if (preferences.getString("userData") != null) {
@@ -35,18 +36,17 @@ class _authShifter extends ConsumerState<AuthShifter> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    localToken();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    User? token = ref.watch(userDataProvider);
-    if (token == null) {
-      return AuthPage();
-    } else {
-      return Navigation();
-    }
+    return StreamBuilder(
+        stream: SharedPreferences.getInstance().asStream(),
+        builder: (context, snapshot) {
+          String? data = snapshot.data!.getString("userData");
+          if (data == null || data == "") {
+            return AuthPage();
+          } else {
+            localToken();
+            return Navigation();
+          }
+        });
   }
 }
