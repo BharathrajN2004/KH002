@@ -8,6 +8,21 @@ import '../common/text.dart';
 class BankAccounts extends ConsumerWidget {
   BankAccounts({super.key});
 
+  List banks = [
+    {
+      "image": "assets/images/payment_options/Banks/sbi.png",
+      "name": "State Bank of India",
+    },
+    {
+      "image": "assets/images/payment_options/Banks/icici.png",
+      "name": "ICICI Bank",
+    },
+    {
+      "image": "assets/images/payment_options/Banks/kotak.png",
+      "name": "Kotak Mahindra Bank",
+    },
+  ]
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     CustomSizeData sizeData = CustomSizeData.from(context);
@@ -65,7 +80,7 @@ class BankAccounts extends ConsumerWidget {
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Image.asset(
-                                  "assets/images/payment_options/Banks/sbi.png",
+                                  banks[index]["image"],
                                   fit: BoxFit.fitHeight,
                                 ),
                               ),
@@ -74,7 +89,7 @@ class BankAccounts extends ConsumerWidget {
                               ),
                               Expanded(
                                 child: CustomText(
-                                  text: "State Bank of India",
+                                  text: banks[index]["name"],
                                   size: sizeData.tooSmall,
                                   weight: FontWeight.w700,
                                   color: colorData.fontColor(.8),
