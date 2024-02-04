@@ -34,7 +34,7 @@ class ProfileTile extends ConsumerWidget {
           borderRadius: BorderRadius.circular(10),
           color: colorData.fontColor(.05),
         ),
-        height: height * 0.065,
+        height: height * 0.05,
         // color: Colors.amber,
         margin: EdgeInsets.symmetric(horizontal: width * 0.14),
         child: Row(
