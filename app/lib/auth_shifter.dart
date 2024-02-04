@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './providers/user_detail_provider.dart';
 import './layouts/navigation.dart';
 import 'class/user.dart';
-import 'layouts/biometric.dart';
 import 'layouts/login&signin.dart';
 
 class AuthShifter extends ConsumerStatefulWidget {
@@ -45,9 +44,9 @@ class _authShifter extends ConsumerState<AuthShifter> {
   Widget build(BuildContext context) {
     User? token = ref.watch(userDataProvider);
     if (token == null) {
-      return BioMetricScreen();
+      return AuthPage();
     } else {
-      return BioMetricScreen();
+      return Navigation();
     }
   }
 }
