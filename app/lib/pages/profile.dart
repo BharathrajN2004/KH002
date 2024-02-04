@@ -66,8 +66,10 @@ class Profile extends ConsumerWidget {
                 clipBehavior: Clip.none,
                 children: [
                   CustomText(
-                    text: userData!.name[0].toUpperCase() +
-                        userData.name.substring(1),
+                    text: userData != null
+                        ? (userData.name[0].toUpperCase() +
+                            userData.name.substring(1))
+                        : "",
                     size: sizeData.header,
                     weight: FontWeight.w800,
                     color: colorData.fontColor(.8),
@@ -82,13 +84,13 @@ class Profile extends ConsumerWidget {
               ),
               SizedBox(height: height * 0.005),
               CustomText(
-                text: userData.email,
+                text: userData != null ? userData.email : "",
                 size: sizeData.regular,
                 color: colorData.fontColor(.6),
               ),
               SizedBox(height: height * 0.005),
               CustomText(
-                text: userData.phoneNo.toString(),
+                text: userData != null ? userData.phoneNo.toString() : "",
                 size: sizeData.regular,
                 color: colorData.fontColor(.6),
               ),
