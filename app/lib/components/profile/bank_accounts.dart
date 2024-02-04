@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -39,7 +38,7 @@ class BankAccounts extends ConsumerWidget {
                 child: SizedBox(
                   height: height * 0.1,
                   child: ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: width*0.02),
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.02),
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
                     itemCount: 3,
@@ -66,7 +65,7 @@ class BankAccounts extends ConsumerWidget {
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Image.asset(
-                                  "assets/images/avatars/avatar4.png",
+                                  "app/assets/images/Payment Options/Banks/sbi.png",
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -75,7 +74,7 @@ class BankAccounts extends ConsumerWidget {
                               ),
                               Expanded(
                                 child: CustomText(
-                                  text: "Bank name",
+                                  text: "State Bank of India",
                                   size: sizeData.tooSmall,
                                   weight: FontWeight.w700,
                                   color: colorData.fontColor(.8),

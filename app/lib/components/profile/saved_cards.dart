@@ -64,7 +64,7 @@ class SavedCards extends ConsumerWidget {
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Image.asset(
-                                  "assets/images/avatars/avatar4.png",
+                                  "app/assets/images/Payment Options/Cards/Axis.png",
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -79,7 +79,7 @@ class SavedCards extends ConsumerWidget {
                                       height: height * 0.002,
                                     ),
                                     CustomText(
-                                      text: "card name",
+                                      text: "Flipkart Axis Bank Credit Card",
                                       size: sizeData.regular,
                                       weight: FontWeight.w700,
                                       color: colorData.fontColor(.8),
@@ -89,7 +89,7 @@ class SavedCards extends ConsumerWidget {
                                       height: height * 0.006,
                                     ),
                                     CustomText(
-                                      text: "card type",
+                                      text: "Mastercard",
                                       size: sizeData.verySmall,
                                       weight: FontWeight.w600,
                                       color: colorData.fontColor(.6),
