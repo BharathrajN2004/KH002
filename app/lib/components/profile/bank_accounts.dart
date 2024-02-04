@@ -56,7 +56,7 @@ class BankAccounts extends ConsumerWidget {
                     padding: EdgeInsets.symmetric(horizontal: width * 0.02),
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
-                    itemCount: 3,
+                    itemCount: banks.length,
                     itemBuilder: (context, index) {
                       return Container(
                         width: width * .225,

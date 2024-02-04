@@ -8,6 +8,10 @@ import '../common/text.dart';
 class Upis extends ConsumerWidget {
   Upis({super.key});
 
+  List upis = [
+    {"name": "7894561235@okaxis"},
+    {"name": "7894561235@kotak"}
+  ];
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     CustomSizeData sizeData = CustomSizeData.from(context);
@@ -33,7 +37,10 @@ class Upis extends ConsumerWidget {
                   color: colorData.fontColor(.6),
                   weight: FontWeight.w800,
                 ),
-                Icon(Icons.add_rounded,size: aspectRatio*55,),
+                Icon(
+                  Icons.add_rounded,
+                  size: aspectRatio * 55,
+                ),
               ],
             ),
             SizedBox(
@@ -44,7 +51,7 @@ class Upis extends ConsumerWidget {
                 padding: EdgeInsets.symmetric(horizontal: width * 0.02),
                 scrollDirection: Axis.vertical,
                 physics: const BouncingScrollPhysics(),
-                itemCount: 3,
+                itemCount: upis.length,
                 itemBuilder: (context, index) {
                   return Container(
                     width: width * .6,
@@ -69,7 +76,7 @@ class Upis extends ConsumerWidget {
                         width: width * 0.02,
                       ),
                       CustomText(
-                        text: "7894561235@okaxis",
+                        text: upis[index]["name"],
                         size: sizeData.medium,
                         weight: FontWeight.w700,
                         color: colorData.fontColor(.8),
